@@ -11,6 +11,9 @@ class Colors(models.Model):
     def __str__(self):
         return f"{self.title}"
     
+    # def __html__(self):
+    #     return mark_safe(f'<img src={self.color_image.url}/>')
+    
 
 
 class Note(models.Model):

@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-      <div class="row justify-content-lg-center">
+      <div class="row justify-content-lg-center" style="overflow:hidden; height:500px;">
             {% if object_list %}
             
                 {% for object in object_list %}
-                
                 <div class="col-lg-3">
                         <div class="card {{object.background_color}} mb-3" style="max-width: 18rem;">
                             <div class="card-header">{{ object.title}}</div>
                             <div class="card-body">
-                                    <h5 class="card-title">Created on: {{object.created_on|date:'F d, Y'}}</h5>
+                                    <h6 class="card-title" style="font-size:12px;">Created on: {{object.created_on|date:'F d, Y'}}</h6>
                                     <p class="card-text">{{object.contents|truncatechars:70}}</p>
                                      <a href="{% url 'note-detail' object.id %}" class="btn btn-default btn-sm float-right">
                                         <i class="fas fa-eye"></i>
@@ -21,9 +20,11 @@
                     </div>
                 {% endfor %}
             {% else %}
-
             {% endif %}
-        </div>
-    <a type="button" href="{% url 'note-create' %}" class="btn btn-dark pmd-btn-fab pmd-ripple-effect float-right"><i class="material-icons pmd-sm">add</i></a>
-  
+      </div>
+
+   <a type="button" href="{% url 'note-create' %}" class="   btn btn-dark pmd-btn-fab pmd-ripple-effect float-right ">
+    <i class="material-icons pmd-sm">add</i>
+   </a>
+
 {% endblock contents %}

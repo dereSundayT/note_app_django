@@ -125,4 +125,4 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'note-list'
-LOGIN_URL = 'note-login '
+LOGIN_URL = 'note-login'
