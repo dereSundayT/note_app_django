@@ -124,5 +124,5 @@ MEDIA_ROOT = Path(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'note-home'
-LOGIN_URL = 'note-home'
+LOGIN_REDIRECT_URL = 'note-list'
+LOGIN_URL = 'note-login '

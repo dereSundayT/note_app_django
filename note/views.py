@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.views import LoginView,LogoutView
-from django.views.generic import CreateView,DetailView
+from django.views.generic import CreateView,DetailView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Note
 
@@ -10,6 +10,13 @@ from .forms import RegisterForm
 
 def home_view(request):
     return render(request,'home.html')
+
+class NoteListView(LoginRequiredMixin,ListView):
+    model = Note
+
+    def get_queryset(self):
+        return Note.objects.filter(author=self.request.user.id)
+    
 
 #register
 def register_view(request):
