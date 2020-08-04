@@ -3,7 +3,7 @@
 {% block contents %}
 
 <div class="container">
-  <div class="card">
+  <div class="card {{object.background_color}}">
     <div class="card-header">
      <a href="{% url 'note-list' %}" class="btn btn-default btn-sm"> <i class="fas fa-arrow-left"></i> </a>
         {{object.title}}
@@ -12,7 +12,7 @@
         {{object.contents}}
     </div>
     <div class="card-footer">
-       Created on: {{object.created_on|date:'F d, Y'}}
+       Created on: {{object.created_on|date:'F d, Y'}} at: {{object.created_on|date:'h:s a'}}
        
        <div class="float-right"> 
             <a href="{% url 'note-update' object.id %}" class="btn btn-primary btn-sm"> <i class="far fa-edit"> </i> </a>
@@ -22,4 +22,6 @@
   </div>
 </div>
 {% endblock contents %}
+
+       
 
