@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contents %}
+
+<div>
+    <form method="post" novalidate>
+    {% csrf_token %}
+        {{form|crispy}}
+        <button class="btn btn-outline-dark float-right"> Register </button>
+    </form>
+</div>
+{% endblock contents %}
+

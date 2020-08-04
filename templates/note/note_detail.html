@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contents %}
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+     <a href="{% url 'note-home' %}" class="btn btn-default btn-sm"> <i class="fas fa-arrow-left"></i> </a>
+        {{object.title}}
+    </div>
+    <div class="card-body">
+        {{object.contents}}
+    </div>
+    <div class="card-footer">
+       Created on: {{object.created_on|date:'F d, Y'}}
+       <div class="float-right"> 
+            <a href="" class="btn btn-primary btn-sm"> <i class="far fa-edit"> </i> </a>
+            <a href="" class="btn btn-danger  btn-sm"> <i class="fas fa-trash"></i> </a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock contents %}
+
