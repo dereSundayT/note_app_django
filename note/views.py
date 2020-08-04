@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView,LogoutView
-from django.views.generic import CreateView,DetailView,ListView
+from django.views.generic import CreateView,DetailView,ListView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Note
 
@@ -17,7 +18,13 @@ class NoteListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return Note.objects.filter(author=self.request.user.id)
     
+class NoteUpdateView(LoginRequiredMixin,UpdateView):
+    model = Note
+    fields = ['title','contents','background_color']
 
+class NoteDeleteView(LoginRequiredMixin,DeleteView):
+    model = Note
+    success_url = reverse_lazy('note-list')
 #register
 def register_view(request):
     if request.method =='POST':

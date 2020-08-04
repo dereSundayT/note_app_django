@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contents %}
+
+<div>
+    <form method="post" novalidate>
+    {% csrf_token %}
+        {{form|crispy}}
+        <button class="btn btn-outline-danger "> Yes, I want to Delete this note :<b>{{object.title}}</b> </button>
+        <a href="{% url 'note-detail' object.id %}" class="btn btn-outline-dark"> No, Please Take Me Back </a>
+    </form>
+</div>
+{% endblock contents %}
+
