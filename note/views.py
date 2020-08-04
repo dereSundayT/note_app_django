@@ -18,13 +18,33 @@ class NoteListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return Note.objects.filter(author=self.request.user.id)
     
-class NoteUpdateView(LoginRequiredMixin,UpdateView):
+class NoteUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Note
     fields = ['title','contents','background_color']
 
-class NoteDeleteView(LoginRequiredMixin,DeleteView):
+    def test_func(self):
+        note = self.get_object()
+        if self.request.user == note.author:
+            return True
+        else:
+            return False
+
+    def handle_no_permission(self):
+        return redirect('note-list')
+
+
+class NoteDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Note
     success_url = reverse_lazy('note-list')
+
+    def test_func(self):
+        note = self.get_object()
+        if note.author == self.request.user:
+            return True
+        else:
+            return False
+    def handle_no_permission(self):
+        return redirect('note-list')
 #register
 def register_view(request):
     if request.method =='POST':
@@ -52,6 +72,15 @@ class NoteCreateView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 
 
-class NoteDetailView(LoginRequiredMixin, DetailView):
+class NoteDetailView(LoginRequiredMixin,UserPassesTestMixin,DetailView):
     model = Note
 
+    def test_func(self):
+        note = self.get_object()
+        if note.author == self.request.user:
+            return True
+        else:
+            return False
+    
+    def handle_no_permission(self):
+        return redirect('note-list')

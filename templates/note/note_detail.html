@@ -13,6 +13,7 @@
     </div>
     <div class="card-footer">
        Created on: {{object.created_on|date:'F d, Y'}}
+       
        <div class="float-right"> 
             <a href="{% url 'note-update' object.id %}" class="btn btn-primary btn-sm"> <i class="far fa-edit"> </i> </a>
             <a href="{% url 'note-delete' object.id %}" class="btn btn-danger  btn-sm"> <i class="fas fa-trash"></i> </a>
